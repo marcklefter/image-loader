@@ -17,7 +17,7 @@ imageLoader(
     	// 	imageUrl,
     	// 	index,
     	// 	status	// final loading status
-		// }] 	
+	// }] 	
     }
 )
 ```
