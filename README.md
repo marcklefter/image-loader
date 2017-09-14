@@ -11,6 +11,13 @@ imageLoader(
         // imageUrl is the image URL for which status is being reported.
         // index if the position of imageUrl in the list of image URLs.
         // status is one of the following: 'loading', 'loaded', 'failed'.
+    },
+    results => {
+    	// results = [{
+    	// 	imageUrl,
+    	// 	index,
+    	// 	status	// final loading status
+		// }] 	
     }
 )
 ```
