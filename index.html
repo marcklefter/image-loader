@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image Loader</title>
+
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Content -->
+
+    <div class="container">
+        <div class="grid">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="imageLoader.js"></script>
+    
+    <script>
+        const images = [
+            'http://via.placeholder.com/350x150',
+            'http://via.placeholder.com/350x150',
+            'http://via.placeholder.com/350x150',
+
+            'http://via.placeholder.com/350x150',
+            'http://path/to/image',
+            'http://via.placeholder.com/350x150',
+
+            'http://via.placeholder.com/350x150',
+            'http://via.placeholder.com/350x150',
+            'http://path/to/image'
+        ];
+
+        imageLoader(
+            images, 
+            (image, i, status) => {
+                switch (status)
+                {
+                    case 'loading':
+                        $('.grid').append(`<div id="image-${i}" class="grid-item"><div class="image image-loading"></div></div>`);
+
+                        break;
+
+                    case 'loaded':
+                        setTimeout(
+                            () => $(`#image-${i} .image`).removeClass('image-loading').append(`<img src="${image}">`),
+                            Math.floor(Math.random() * (1000 - 100 + 1)) + 100
+                        );
+
+                        break;
+
+                    default:
+                        setTimeout(
+                            () => $(`#image-${i} .image`).removeClass('image-loading').append(`<img src="http://shop.racing.bg/images/nopicture.png">`),
+                            Math.floor(Math.random() * (1000 - 100 + 1)) + 100
+                        );
+                        
+                        break;
+                }
+            },
+            results => {
+                console.log(results);
+
+                // TBD: Log image URLs that were successfully loaded.
+                // TBD: Log image URLs that failed to load.
+            }
+        );
+    </script>
+
+</body>
+</html>
